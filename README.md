@@ -36,7 +36,7 @@
 1. 实现后台运行与程序生命周期、程序间通信：OnNavigatedTo（3个），OnNavigatedFrom（3个），OnShareRequested
 2. 实现动态磁贴、文件管理：selectPicture，searchWeather,tile.xml，OnLaunched（App.xaml.cs里面）
 3. 实现网络访问、数据库：addFavourite（2个），showCollection（2个），logIn，以及数据库相关的一些函数
-其他函数如searchWeather、searchMap则已经编写完成。
+* 其他函数如searchWeather、searchMap、showWeather则已经编写完成。
 ## 总结
 网络访问方面，这次依赖的是高德的API，返回结果有XML/JSON格式的字符串，也有图像。因为字符串格式较复杂，解析起来花费的功夫也比较多，还需要考虑一些API未考虑进去的异常。当返回图像时，不能直接获得它的路径，需要用HttpResponseMessage类来接返回结果，把它转换为IInputStream，通过RandomAccessStream的CopyAsync方法，利用输入输出流转换为IRandomAccessStream类型变量，最后才能放到BitmapImage的路径中。
 
