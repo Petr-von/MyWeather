@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="MyWeatherApp.NewPage2"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MyWeatherApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Margin="0,0,-750,0">
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="Assets/bg.jpg"/>
+        </Grid.Background>
+
+        <Image x:Name="Icon" HorizontalAlignment="Left"  Height="200" Margin="480,24,0,0" VerticalAlignment="Top" Width="287" Source="Assets/Icon.jpg"/>
+
+        <AppBarButton x:Name="appBarButton6" HorizontalAlignment="Left" Label="天气查询" Icon="Home" Margin="10,100,0,0" VerticalAlignment="Top" Click="gotoMainPage"/>
+        <AppBarButton x:Name="appBarButton7" HorizontalAlignment="Left"  Label="地图查询" Icon="Page" Margin="10,200,0,0" VerticalAlignment="Top" Click="gotoNewPage1"/>
+        <AppBarButton x:Name="appBarButton8" HorizontalAlignment="Left"  Label="登录页" Icon="Page2" Margin="10,300,0,0" VerticalAlignment="Top" Click="gotoNewPage2"/>
+        <AppBarButton x:Name="appBarButton" HorizontalAlignment="Left" Icon="SelectAll" Label="选择图片" Margin="680,269,0,0" VerticalAlignment="Top" Click="selectPicture"/>
+        <TextBox x:Name="nameBlock" HorizontalAlignment="Left" Margin="505,431,0,0" TextWrapping="Wrap" Text="请输入你的用户名" VerticalAlignment="Top" Height="42" Width="245" />
+        <TextBlock x:Name="name" HorizontalAlignment="Left" Margin="420,436,0,0" TextWrapping="Wrap" Text="用户名" VerticalAlignment="Top" Height="42" Width="245"/>
+        
+        <PasswordBox x:Name="passwordBlock" HorizontalAlignment="Left" Margin="505,500,0,0" VerticalAlignment="Top" Height="42" Width="245" />
+        <TextBlock x:Name="password" HorizontalAlignment="Left" Margin="420,505,0,0" TextWrapping="Wrap" Text="密码" VerticalAlignment="Top" Height="42" Width="245"/>
+        <Button x:Name="loginButton" Content="登录/注册" HorizontalAlignment="Left" Margin="660,547,0,0" VerticalAlignment="Top" Click="logIn"/>
+    </Grid>
+</Page>
