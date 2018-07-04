@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tile>
+  <visual>
+  
+    <binding template="TileSmall">
+      <image src="Assets\background3.jpg"           placement="background"/>
+      <text hint-wrap="true" hint-style="captionSubtle">Text</text>
+    </binding>
+
+    <binding template="TileMedium">
+      <image src="Assets\background3.jpg"           placement="background"/>
+      <text hint-wrap="true" hint-style="captionSubtle">Text</text>
+    </binding>
+
+    <binding template="TileWide">
+      <image src="Assets\background3.jpg"           placement="background"/>
+      <text hint-wrap="true" hint-style="captionSubtle">Text</text>
+    </binding>
+
+  </visual>
+</tile>
