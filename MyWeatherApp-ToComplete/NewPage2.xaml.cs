@@ -68,7 +68,51 @@ namespace MyWeatherApp
          */
         private void logIn(object sender, RoutedEventArgs e)
         {
-            // to complete
+            if (nameBlock.Text == "")
+            {
+                var i = new MessageDialog("用户名不能为空").ShowAsync();
+                return;
+            }
+            if (passwordBlock.Password == "")
+            {
+                var i = new MessageDialog("密码不能为空").ShowAsync();
+                return;
+            }
+
+            var db = App.conn2;
+            string result = "";
+            string pw = "";
+            using (var statement = db.Prepare("SELECT * FROM Info WHERE UserName LIKE ?"))
+            {
+                statement.Bind(1, nameBlock.Text);
+                while (SQLiteResult.ROW == statement.Step())
+                {
+                    result += (string)statement[0];
+                    pw += (string)statement[1];
+                }
+            }
+
+            if (result == "")
+            {
+                using (var statement2 = db.Prepare("INSERT INTO Info (UserName, Password) VALUES (?, ?)"))
+                {
+                    statement2.Bind(1, nameBlock.Text);
+                    statement2.Bind(2, passwordBlock.Password);
+                    statement2.Step();
+                }
+                userName = nameBlock.Text;
+                var i = new MessageDialog("注册成功").ShowAsync();
+            } else
+            {
+                if (passwordBlock.Password == pw)
+                {
+                    userName = nameBlock.Text;
+                    var i = new MessageDialog("登录成功").ShowAsync();
+                } else
+                {
+                    var i = new MessageDialog("登录失败，密码不正确").ShowAsync();
+                }
+            }
         }
 
         private void gotoMainPage(object sender, RoutedEventArgs e)

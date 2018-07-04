@@ -446,7 +446,28 @@ namespace MyWeatherApp
          */
         private void addFavourite(object sender, RoutedEventArgs e)
         {
-            // to complete
+            if (NewPage2.userName == "")
+            {
+                var i = new MessageDialog("未登录").ShowAsync();
+                return;
+            }
+
+        
+            if (currentCity == "")
+            {
+                var i = new MessageDialog("未选中收藏地点").ShowAsync();
+            } else
+            {
+                string id = Guid.NewGuid().ToString();
+                var db = App.connection.getInstance().conn;
+                using (var statement = db.Prepare("INSERT INTO Favourites (Id, UserName, City) VALUES (?, ?, ?)"))
+                {
+                    statement.Bind(1, id);
+                    statement.Bind(2, NewPage2.userName);
+                    statement.Bind(3, currentCity);
+                    statement.Step();
+                }
+            }
         }
 
         /*
@@ -454,7 +475,25 @@ namespace MyWeatherApp
          */
         private void showCollection(object sender, RoutedEventArgs e)
         {
-            // to complete
+            if (NewPage2.userName == "")
+            {
+                var j = new MessageDialog("未登录").ShowAsync();
+                return;
+            }
+
+    
+            var db = App.connection.getInstance().conn;
+            string result = "收藏的地点： \n";
+            using (var statement = db.Prepare("SELECT * FROM Favourites WHERE UserName LIKE ?"))
+            {
+                statement.Bind(1, NewPage2.userName);
+                while (SQLiteResult.ROW == statement.Step())
+                {
+                    result += (string)statement[2] + "\n";
+                }
+            }
+
+            var i = new MessageDialog(result).ShowAsync();
         }
 
         private void gotoMainPage(object sender, RoutedEventArgs e)
