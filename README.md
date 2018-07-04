@@ -30,13 +30,13 @@
 ### UI设计
 * 负责设计app的页面，需要设计界面布局，页面之间的导航，自适应UI，数据绑定。
 * 暂定为3个页面，天气查询、地图查询和登录界面，可参考win10自带的天气应用的界面。
-* 三个页面的布局图在群里给出，里面包含了必要的控件的它们的名字，请务必使用这些名字便于前后端的统一，而如何布局不必照搬，越美观越好啦。
+* 三个页面的布局图包含在PPT中。
 ### 后台逻辑
-细分为3部分。每部分要写的成员函数如下：
+细分为3部分。每部分要求写的成员函数如下：
 1. 实现后台运行与程序生命周期、程序间通信：OnNavigatedTo（3个），OnNavigatedFrom（3个），OnShareRequested
 2. 实现动态磁贴、文件管理：selectPicture，searchWeather,tile.xml，OnLaunched（App.xaml.cs里面）
 3. 实现网络访问、数据库：addFavourite（2个），showCollection（2个），logIn，以及数据库相关的一些函数
-
+其他函数如searchWeather、searchMap则已经编写完成。
 ## 总结
 网络访问方面，这次依赖的是高德的API，返回结果有XML/JSON格式的字符串，也有图像。因为字符串格式较复杂，解析起来花费的功夫也比较多，还需要考虑一些API未考虑进去的异常。当返回图像时，不能直接获得它的路径，需要用HttpResponseMessage类来接返回结果，把它转换为IInputStream，通过RandomAccessStream的CopyAsync方法，利用输入输出流转换为IRandomAccessStream类型变量，最后才能放到BitmapImage的路径中。
 
